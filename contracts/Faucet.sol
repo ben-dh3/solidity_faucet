@@ -4,7 +4,6 @@ pragma solidity ^0.8.4;
 // contract inheritance
 contract owned {
     bool public paused;
-    // set the contract owner on creation
     address owner;
     constructor() {
         owner = msg.sender;
@@ -25,9 +24,8 @@ contract pausable is owned {
 
 // contract object
 contract Faucet is pausable {
-    // event objects
-    event Withdrawal(address indexed to, uint amount);
-    event Deposit(address indexed from, uint amount);
+    // event Withdrawal(address indexed to, uint amount);
+    // event Deposit(address indexed from, uint amount);
 
     function withdraw(uint withdraw_amount) public {
         // error handling
@@ -38,11 +36,11 @@ contract Faucet is pausable {
         // send amount to the address that requested it
         payable(msg.sender).transfer(withdraw_amount);
         // event data -> transaction logs
-        emit Withdrawal(msg.sender, withdraw_amount);
+        // emit Withdrawal(msg.sender, withdraw_amount);
     }
 
     // accept incoming payments
     function deposit() public payable {
-        emit Deposit(msg.sender,msg.value);
+        // emit Deposit(msg.sender,msg.value);
     }
 }
