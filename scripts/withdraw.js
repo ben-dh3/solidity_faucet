@@ -18,16 +18,16 @@ async function printBalances(addresses) {
 async function main() {
     
     const [owner] = await hre.ethers.getSigners();
-    const Faucet = await hre.ethers.getContractFactory("Faucet");
+    // const Faucet = await hre.ethers.getContractFactory("Faucet");
     const faucet = await Faucet.deploy();
 
-    console.log("faucet deployed to:", faucet.target);
+    // console.log("faucet deployed to:", faucet.target);
 
     const addresses = [owner.address, faucet.target];
 
     // put some funds in the faucet
-    await faucet.connect(owner).deposit({ value: hre.ethers.parseEther("1") });
-    await printBalances(addresses);
+    // await faucet.connect(owner).deposit({ value: hre.ethers.parseEther("1") });
+    // await printBalances(addresses);
 
     await faucet.connect(owner).withdraw(hre.ethers.parseEther("0.1"));
 
